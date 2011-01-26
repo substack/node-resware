@@ -1,0 +1,24 @@
+{
+    "name" : "resware",
+    "version" : "0.0.1",
+    "description" : "Hack an http.Response instance to set headers before writeHead()",
+    "modules" : {
+        "index" : "./index.js",
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/substack/node-resware.git"
+    },
+    "keywords" : [
+        "response",
+        "headers",
+        "http"
+    ],
+    "author" : {
+        "name" : "James Halliday",
+        "email" : "mail@substack.net",
+        "url" : "http://substack.net"
+    },
+    "license" : "MIT/X11",
+    "engine" : ["node >=0.2.0"]
+}
