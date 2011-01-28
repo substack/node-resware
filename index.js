@@ -2,7 +2,7 @@ exports = module.exports = function (req, res, next) {
     var _writeHead = res.writeHead;
     var _end = res.end;
     var headers = {};
-    var status = null;
+    var code = null;
     var calledWriteHead = false;
     
     res.setHeader = function (key, value) {
@@ -41,13 +41,13 @@ exports = module.exports = function (req, res, next) {
         return res.setHeader('Content-Type', t);
     };
     
-    res.status = function (s) {
-        status = s;
+    res.code = function (s) {
+        code = s;
     };
     
     res.end = function (msg) {
         if (!calledWriteHead) {
-            res.writeHead(status || 200, {});
+            res.writeHead(code || 200, {});
         }
         _end.call(res, msg);
         return res;
@@ -55,16 +55,15 @@ exports = module.exports = function (req, res, next) {
     
     res.writeHead = function (s, hs) {
         if (s) {}
-        status = s;
+        code = s;
         
-        if (headers) {
-            Object.keys(hs).forEach(function (key) {
-                headers[key] = hs[key];
-            }); 
-        }
+        Object.keys(hs || {}).forEach(function (key) {
+            headers[key] = hs[key];
+        }); 
+        
         calledWriteHead = true;
         
-        _writeHead.call(res, status, headers);
+        _writeHead.call(res, code, headers);
         return res;
     };
     

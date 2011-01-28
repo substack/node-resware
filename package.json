@@ -1,6 +1,6 @@
 {
     "name" : "resware",
-    "version" : "0.0.1",
+    "version" : "0.0.2",
     "description" : "Middleware to wrap around the http.ServerResponse for setting headers before writeHead() gets called",
     "modules" : {
         "index" : "./index.js",
