@@ -1,4 +1,4 @@
-module.exports = function (req, res, next) {
+exports = module.exports = function (req, res, next) {
     var _writeHead = res.writeHead;
     var _end = res.end;
     var headers = {};
@@ -15,6 +15,26 @@ module.exports = function (req, res, next) {
             headers[key] = hs[key];
         });
         return res;
+    };
+    
+    res.setCookie = function (key, value, opts) {
+        // opts: Expires, Max-Age, Path, Secure, Version, Domain, Comment
+        opts = opts || {};
+        
+        res.setHeader('Set-Cookie',
+            escape(key) + '=' + escape(value)
+            + Object.keys(opts)
+                .map(function (k) {
+                    if (opts[k] === true)
+                        return escape(k)
+                    else if (opts[k] === false)
+                        return undefined
+                    else 
+                        return escape(k) + '=' + escape(opts[k])
+                })
+                .filter(function (x) { return x !== undefined })
+                .join('; ')
+        );
     };
     
     res.type = function (t) {
@@ -49,4 +69,9 @@ module.exports = function (req, res, next) {
     };
     
     next();
+};
+
+exports.wrap = function (res) {
+    exports({}, res, function () {});
+    return res;
 };

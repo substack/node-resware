@@ -1,7 +1,7 @@
 {
     "name" : "resware",
     "version" : "0.0.1",
-    "description" : "Hack an http.ServerResponse instance to set headers before writeHead()",
+    "description" : "Middleware to wrap around the http.ServerResponse for setting headers before writeHead() gets called",
     "modules" : {
         "index" : "./index.js",
     },
