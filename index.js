@@ -1,4 +1,4 @@
-module.exports = function (res) {
+module.exports = function (req, res, next) {
     var _writeHead = res.writeHead;
     var _end = res.end;
     var headers = {};
@@ -48,5 +48,5 @@ module.exports = function (res) {
         return res;
     };
     
-    return res;
+    next();
 };

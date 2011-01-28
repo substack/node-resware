@@ -1,7 +1,7 @@
 {
     "name" : "resware",
     "version" : "0.0.1",
-    "description" : "Hack an http.Response instance to set headers before writeHead()",
+    "description" : "Hack an http.ServerResponse instance to set headers before writeHead()",
     "modules" : {
         "index" : "./index.js",
     },
