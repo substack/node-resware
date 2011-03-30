@@ -22,8 +22,8 @@ exports = module.exports = function (req, res, next) {
         opts = opts || {};
         
         res.setHeader('Set-Cookie',
-            escape(key) + '=' + escape(value)
-            + Object.keys(opts)
+            [ escape(key) + '=' + escape(value) ]
+            .concat(Object.keys(opts)
                 .map(function (k) {
                     if (opts[k] === true)
                         return escape(k)
@@ -33,7 +33,7 @@ exports = module.exports = function (req, res, next) {
                         return escape(k) + '=' + escape(opts[k])
                 })
                 .filter(function (x) { return x !== undefined })
-                .join('; ')
+            ).join('; ')
         );
     };
     
